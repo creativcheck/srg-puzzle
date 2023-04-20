@@ -25,22 +25,28 @@ namespace Core
         public void RestartLevel()
         {
             Continue();
-            _inputListener.Expose();
+            _inputListener?.Expose();
             SceneManager.LoadScene(_thisLevelID);
         }
 
         public void NextLevel()
         {
             Continue();
-            _inputListener.Expose();
+            _inputListener?.Expose();
             SceneManager.LoadScene(_nextLevelID);
         }
 
         public void GoToMainMenu()
         {
             Continue();
-            _inputListener.Expose();
+            _inputListener?.Expose();
             SceneManager.LoadScene(_mainMenuID);
+        }
+
+        public void GoToFirstLevel()
+        {
+            Continue();
+            SceneManager.LoadScene(_nextLevelID);
         }
     }
 }

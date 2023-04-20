@@ -4,27 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoseView : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Button _restartButton, _mainMenuButton;
-    [SerializeField] private Game _game;
-
-    void Start()
+    public class LoseView : MonoBehaviour
     {
-        Bind();
+        [SerializeField] private Button _restartButton, _mainMenuButton;
+        [SerializeField] private Game _game;
+
+        void Start()
+        {
+            Bind();
+        }
+
+        private void Bind()
+        {
+            gameObject.SetActive(false);
+
+            _restartButton.onClick.AddListener(_game.RestartLevel);
+            _mainMenuButton.onClick.AddListener(_game.GoToMainMenu);
+        }
+
+        public void DrawLosePanel()
+        {
+            gameObject.SetActive(true);
+            _game.Pause();
+        }
     }
 
-    private void Bind()
-    {
-        gameObject.SetActive(false);
-
-        _restartButton.onClick.AddListener(_game.RestartLevel);
-        _mainMenuButton.onClick.AddListener(_game.GoToMainMenu);
-    }
-
-    public void DrawLosePanel()
-    {
-        _game.Pause();
-        gameObject.SetActive(true);
-    }
 }
